@@ -1,58 +1,59 @@
 import streamlit as st
 
-# Pengaturan Halaman
-st.set_page_config(page_title="Portofolio | Christian Winanto", page_icon="⚽", layout="centered")
+# Setup Halaman
+st.set_page_config(page_title="Christian Winanto | Portofolio", page_icon="⚽")
 
-# --- HEADER SECTION ---
-st.title("Hi, Saya Christian Winanto 👋")
-st.subheader("Siswa SMA Prestasi Prima | Futsal Athlete")
+# --- CSS CUSTOM (Agar lebih keren) ---
+st.markdown("""
+    <style>
+    .main { background-color: #f0f2f6; }
+    stButton>button { width: 100%; border-radius: 20px; }
+    </style>
+    """, unsafe_allow_html=True)
 
-# Menghitung Umur Secara Otomatis (Opsional)
-from datetime import date
-today = date.today()
-age = today.year - 2009 - ((today.month, today.day) < (12, 31))
+# --- SIDEBAR ---
+st.sidebar.title("Kontak")
+st.sidebar.write("📍 Jakarta, Indonesia")
+st.sidebar.write("📧 [Email Christian](mailto:christian@example.com)")
+st.sidebar.info("Siswa SMA Prestasi Prima")
 
-# --- BIODATA ---
-with st.container():
+# --- HERO SECTION ---
+col1, col2 = st.columns([1, 2], gap="large")
+with col1:
+    # Ganti 'profile.png' dengan link foto kamu nanti
+    st.image("https://via.placeholder.com/300", caption="Christian Winanto")
+
+with col2:
+    st.title("Christian Winanto")
+    st.write("📅 **Lahir:** 31 Desember 2009")
+    st.write("🏫 **Sekolah:** SMA Prestasi Prima")
+    st.write("🎯 **Fokus:** Student Athlete & Tech Enthusiast")
     st.write("---")
-    left_column, right_column = st.columns(2)
-    with left_column:
-        st.header("Biodata Diri")
-        st.write(
-            f"""
-            - **Nama Lengkap:** Christian Winanto
-            - **Tanggal Lahir:** 31 Desember 2009
-            - **Umur:** {age} Tahun
-            - **Pendidikan:** SMA Prestasi Prima
-            - **Lokasi:** Indonesia
-            """
-        )
-    with right_column:
-        # Tempat untuk hobi/karakter
-        st.header("Tentang Saya")
-        st.write(
-            "Saya adalah seorang pelajar yang berdedikasi tinggi baik dalam bidang akademik "
-            "maupun non-akademik. Saya percaya bahwa disiplin di lapangan futsal "
-            "berbanding lurus dengan disiplin dalam belajar."
-        )
+    st.write("""
+        Halo! Saya Christian. Saya seorang siswa yang sangat menyukai dunia olahraga, 
+        terutama **Futsal**. Bagi saya, futsal bukan sekadar hobi, tapi tempat saya 
+        belajar tentang kerja keras, kerja tim, dan strategi.
+    """)
 
-# --- KEUNGGULAN & SKILL ---
-with st.container():
-    st.write("---")
-    st.header("Keahlian Utama: Futsal ⚽")
-    
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.subheader("Agility")
-        st.write("Kemampuan pergerakan cepat di lapangan.")
-    with col2:
-        st.subheader("Teamwork")
-        st.write("Membangun komunikasi yang baik dalam tim.")
-    with col3:
-        st.subheader("Strategy")
-        st.write("Memahami pola permainan dan rotasi pemain.")
+# --- KEUNGGULAN (FUTSAL) ---
+st.header("⚽ Keunggulan di Lapangan")
+kiri, kanan = st.columns(2)
+with kiri:
+    st.success("**Stamina & Speed**")
+    st.info("**Visi Bermain (Playmaker)**")
+with kanan:
+    st.warning("**Akurasi Shooting**")
+    st.error("**Disiplin Bertahan**")
+
+# --- PROGRESS SKILL ---
+st.subheader("Skill Stats")
+st.write("Dribbling")
+st.progress(85)
+st.write("Passing")
+st.progress(90)
+st.write("Physical")
+st.progress(80)
 
 # --- FOOTER ---
-with st.container():
-    st.write("---")
-    st.write("📧 **Kontak:** Hubungi saya melalui DM Instagram atau Email sekolah.")
+st.write("---")
+st.caption("Dibuat dengan Python & Streamlit | 2024 Christian Winanto")
